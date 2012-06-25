@@ -4,7 +4,7 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "sendgrid"
+    gem.name = "sendgrid-enphase"
     gem.summary = %Q{A gem that allows simple integration of ActionMailer with SendGrid (http://sendgrid.com)}
     gem.description = %Q{This gem allows simple integration between ActionMailer and SendGrid. 
                          SendGrid is an email deliverability API that is affordable and has lots of bells and whistles.}

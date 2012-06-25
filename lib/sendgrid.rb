@@ -40,7 +40,10 @@ module SendGrid
     # can still be overridden by calling sendgrid_category from within a
     # mailer method.
     def sendgrid_category(category)
-      self.default_sg_category = category
+      if category.length > 0 && (!self.default_sg_category || self.default_sg_category.length < 1)
+        self.default_sg_category = []
+      end
+      self.default_sg_category.push(category)
     end
     
     # Enables a default option for all emails.
@@ -84,7 +87,10 @@ module SendGrid
 
   # Call within mailer method to override the default value.
   def sendgrid_category(category)
-    @sg_category = category
+    if category.length > 0 && (!@sg_category || @sg_category.length < 1)
+      @sg_category = []
+    end
+    @sg_category.push(category)
   end
 
   # Call within mailer method to add an option not in the defaults.
@@ -178,7 +184,7 @@ module SendGrid
     if @sg_category && @sg_category == :use_subject_lines
       header_opts[:category] = mail.subject
     elsif @sg_category
-      header_opts[:category] = @sg_category
+      header_opts[:category] = @sg_category + self.class.default_sg_category
     elsif self.class.default_sg_category && self.class.default_sg_category.to_sym == :use_subject_lines
       header_opts[:category] = mail.subject
     elsif self.class.default_sg_category

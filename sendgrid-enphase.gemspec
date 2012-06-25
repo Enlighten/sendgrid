@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/sendgrid.rb",
-    "sendgrid.gemspec",
+    "sendgrid-enphase.gemspec",
     "test/sendgrid_test.rb",
     "test/test_helper.rb"
   ]
